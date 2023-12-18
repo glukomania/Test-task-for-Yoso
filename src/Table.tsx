@@ -13,10 +13,14 @@ type User = {
 const Table = (props) => {
 
   const [data, setData] = useState(null)
+
+  const hanleRowClick = (user) => {
+    props.setSelectedUser(user)
+  }
  
   const renderRow = (data) => {
     return data.map((user: User) => (
-      <tr key={user.id} onClick={() => console.log('click', user.id)}>
+      <tr key={user.id} onClick={() => hanleRowClick(user)}>
         <td>{user.name}</td>
         <td>{user.email}</td>
         <td>{user.position}</td>
