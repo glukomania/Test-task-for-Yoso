@@ -1,13 +1,34 @@
 import * as React from 'react'
+import {useEffect, useState} from 'react'
+import {getAllUsers} from './utils/localStorageService'
 
-const Table = () => {
+type User = { 
+  id: number, 
+  name: string,
+  email: string, 
+  position: string, 
+  workingTime: string 
+}
 
-  const data = [
-    { id: 1, name: 'John Brown', email: 'j.brown@company.com', position: 'Frontend Developer', workingTime:'full-time' },
-    { id: 2, name: 'Jaane Smith', email: 'j.smith@company.com', position: 'Backend Developer', workingTime:'full-time' },
-    { id: 3, name: 'Bob Darly', email: 'b.darly@company.com', position: 'Tester', workingTime:'full-time' },
-    { id: 4, name: 'Anna Katz', email: 'a.katz@company.com', position: 'System Architect', workingTime:'part-time' },
-  ];
+const Table = (props) => {
+
+  const [data, setData] = useState(null)
+ 
+  const renderRow = (data) => {
+    return data.map((user: User) => (
+      <tr key={user.id} onClick={() => console.log('click', user.id)}>
+        <td>{user.name}</td>
+        <td>{user.email}</td>
+        <td>{user.position}</td>
+        <td>{user.workingTime}</td>
+      </tr>
+    ))
+  }
+
+  useEffect(() => {
+    const allUsersData = getAllUsers()
+    setData(allUsersData)
+  }, [])
 
   return (
     ( 
@@ -21,19 +42,12 @@ const Table = () => {
           </tr>
         </thead>
         <tbody>
-          {data.map((user) => (
-            <tr key={user.id}>
-              <td>{user.name}</td>
-              <td>{user.email}</td>
-              <td>{user.position}</td>
-              <td>{user.workingTime}</td>
-            </tr>
-          ))}
+          {data && renderRow(data)}
         </tbody>
       </table>
     )
-  );
-};
+  )
+}
 
 
 export default Table
