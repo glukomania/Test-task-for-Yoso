@@ -14,38 +14,112 @@ body {
   margin: 0;
   padding: 0;
   width: 100%;
-  font-family: 'Hobo Std';
-  background-size: 100% 100%;
+  font-family: 'Inter, sans-serif';
   height: 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-color: #ccc;
 }
 
 #root {
   height: 100%;
-  background-color: #00000050;
 }
 
+.header {
+  height: 5%;
+  background-color: black;
+}
 
 .wrapper {
-  padding: 0 5%;
+  margin: 5%;
   display: flex;
   flex-direction: column;
   height: 100%;
 }
 
-a {
-  color: white;
-  text-decoration: none;
+.table {
+  background-color: white;
+  border: 1px solid #d0d5dd;
+  border-radius: 38px;
+  padding: 5%;
+  min-width: 510px;
+  width: 80%;
 }
 
-a:hover {
-  color: white;
-  text-decoration: none;
+.table-title {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 5%;
 }
 
-a:focus {
-  color: white;
-  text-decoration: none;
+.table-title__text {
+  width: 95%;
+  justify-content: flex-start;
+  font-size: 20px;
+  font-weight: 600;
+  font-family: Poppins, sans-serif;
 }
+
+.table-title__menuIcon {
+  width: 5%;
+  cursor: pointer;
+  display: flex;
+  justify-content: flex-end;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  border: 1px solid var(--cloud-500);
+  background-color: #f9fafb;
+}
+
+th,
+td {
+  padding: 8px;
+  text-align: left;
+  border: 1px solid #ddd;
+  color: #475466;
+  font-size: 16px;
+}
+
+th {
+  background-color: #5a0078;
+  color: white
+}
+
+.inputText {
+  border: 0;
+  background-color: #f9fafb;
+  outline: none;
+  color: inherit;
+  font-size: 16px;
+}
+
+.button {
+  margin-right: 0;
+  margin-left: auto;
+  display: flex;
+  justify-content: center;
+  width: 80px;
+  cursor: pointer;
+  padding: 12px 20px;
+  background-color: #ff264a;
+  color: #fff;
+  border-radius: 8px;
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, .05);
+}
+
+.button:hover {
+  background-color: #ea0334;
+}
+
+
+.button:active{
+
+  background-color: #ff557a;
+  
+  }
