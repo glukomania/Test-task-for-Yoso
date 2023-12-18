@@ -1,6 +1,5 @@
 import * as React from 'react'
 import {useEffect, useState} from 'react'
-import {getAllUsers} from './utils/localStorageService'
 
 type User = { 
   id: number, 
@@ -12,7 +11,7 @@ type User = {
 
 const Table = (props) => {
 
-  const [data, setData] = useState(null)
+
 
   const hanleRowClick = (user) => {
     props.setSelectedUser(user)
@@ -30,8 +29,8 @@ const Table = (props) => {
   }
 
   useEffect(() => {
-    const allUsersData = getAllUsers()
-    setData(allUsersData)
+    const allUsersData = props.getAllUsers()
+    props.setData(allUsersData)
   }, [])
 
   return (
@@ -46,7 +45,7 @@ const Table = (props) => {
           </tr>
         </thead>
         <tbody>
-          {data && renderRow(data)}
+          {props.data && renderRow(props.data)}
         </tbody>
       </table>
     )

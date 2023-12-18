@@ -3,30 +3,31 @@ import {useState, useEffect} from 'react'
 import Table from './Table'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
-import UserFormModal from './UserForm';
+import UserDetailsModal from './UserDetailsModal';
+import AddUserModal from './AddUserModal';
+import {getAllUsers} from './utils/localStorageService'
 
-const handleIconPress = () => {
-  console.log('press add')
-}
 
 const Main = () => {
 
-  const [isUserFormOpen, setIsUserFormOpen] = useState(false)
+  const [data, setData] = useState(null)
+  const [isUserModalOpen, setIsUserModalOpen] = useState(false)
+  const [isAddUserModalOpen, setIsAddUserModalOpen] = useState(false)
   const [selectedUser, setSelectedUser] = useState(null)
   
 
-  const handleCloseModal = () => {
-    setIsUserFormOpen(false)
+  const handleCloseUserForm = () => {
+    setIsUserModalOpen(false)
   }
 
-  const handleOpenModal = (user) => {
-    setIsUserFormOpen(true)
+  const handleCloseAddUserModal = () => {
+    setIsAddUserModalOpen(false)
   }
 
   useEffect(() => {
-  if (selectedUser) {
-    setIsUserFormOpen(true)
-  }
+    if (selectedUser) {
+      setIsUserModalOpen(true)
+    }
   }, [selectedUser])
 
   return (
@@ -34,16 +35,19 @@ const Main = () => {
       <div className="table">
         <div className="table-title">
           <div className="table-title__text">Employee</div>
-          <div className="table-title__menuIcon" onClick={handleIconPress}>
+          <div className="table-title__menuIcon" onClick={()=> setIsAddUserModalOpen(true)}>
               <FontAwesomeIcon icon={faPlus} style={{ height: "20px" }}/>
           </div>
         </div>
         <div>
-            {<Table setSelectedUser={setSelectedUser}/>}
+            {<Table setSelectedUser={setSelectedUser} getAllUsers={getAllUsers} data={data} setData={setData} />}
         </div>
       </div>
       <div>
-        {isUserFormOpen && <UserFormModal handleClose={handleCloseModal} selectedUser={selectedUser}/>}
+        {isUserModalOpen && <UserDetailsModal handleClose={handleCloseUserForm} selectedUser={selectedUser}/>}
+      </div>
+      <div>
+        {isAddUserModalOpen && <AddUserModal handleClose={handleCloseAddUserModal} getAllUsers={getAllUsers} setData={setData} />}
       </div>
     </div>
   )

@@ -1,10 +1,10 @@
 import * as React from 'react'
 import {useState, useEffect} from 'react'
 
-const UserFormModal = (props) => {
+const UserDetailsModal = (props) => {
 
   return (
-    <div className="modal" onClick={props.handleClose}>
+    <div className="modal">
       <div className="modalContentStyle">
         <div className="userData">
           <div className='userData-title'>
@@ -25,9 +25,11 @@ const UserFormModal = (props) => {
             </div>
           </div>
         </div>
+        <div className="button" onClick={props.handleClose}>close</div>
+
       </div>
     </div>
   )
 }
 
-export default UserFormModal
+export default UserDetailsModal
