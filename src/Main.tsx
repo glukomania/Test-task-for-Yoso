@@ -1,13 +1,33 @@
 import * as React from 'react'
+import {useState, useEffect} from 'react'
 import Table from './Table'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import UserFormModal from './UserForm';
 
 const handleIconPress = () => {
   console.log('press add')
 }
 
 const Main = () => {
+
+  const [isUserFormOpen, setIsUserFormOpen] = useState(false)
+  const [selectedUser, setSelectedUser] = useState(null)
+  
+
+  const handleCloseModal = () => {
+    setIsUserFormOpen(false)
+  }
+
+  const handleOpenModal = (user) => {
+    setIsUserFormOpen(true)
+  }
+
+  useEffect(() => {
+  if (selectedUser) {
+    setIsUserFormOpen(true)
+  }
+  }, [selectedUser])
 
   return (
     <div className="wrapper">
@@ -19,8 +39,11 @@ const Main = () => {
           </div>
         </div>
         <div>
-            {<Table />}
-          </div>
+            {<Table setSelectedUser={setSelectedUser}/>}
+        </div>
+      </div>
+      <div>
+        {isUserFormOpen && <UserFormModal handleClose={handleCloseModal} selectedUser={selectedUser}/>}
       </div>
     </div>
   )
