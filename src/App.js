@@ -1,7 +1,10 @@
 import React from 'react'
+import Main from './Main'
 
-export const App = () => {
-  return <div>Let's start!</div>
-}
+const App = () => (
+  <div>
+    <Main />
+  </div>
+)
 
 export default App
