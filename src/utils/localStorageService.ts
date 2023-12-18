@@ -2,7 +2,7 @@
   const STORAGE_KEY = 'userTableData'
 
  type User = { 
-    id: number, 
+    id?: number, 
     name: string,
     email: string, 
     position: string, 
@@ -45,6 +45,28 @@
     const tableData = getTableData();
     return tableData[id] || null;
   }
+
+  export const addUser = (user: User) => {
+    console.log('user', user)
+    const tableData = getTableData();
+    // here I try to get max value of current id to make an id for a new user
+
+    const maxId = Object.keys(tableData).reduce((max, userId) => {
+      const numericId = parseInt(userId, 10);
+      return numericId > max ? numericId : max;
+    }, 0);
+
+    const newUserId = maxId + 1;
+    console.log('newUserId', newUserId)
+
+    const newUser = { ...user, id: newUserId };
+
+    tableData[newUserId] = newUser
+    saveTableData(tableData);
+
+    console.log('user has been saved')
+  }
+
 
   export const getAllUsers = () => {
     const tableData = getTableData();
