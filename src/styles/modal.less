@@ -15,6 +15,7 @@
   min-height: 40%;
   background-color: #fff;
   padding: 40px;
+  padding-left: 50px;
   border-radius: 8px;
   max-width: 400px;
   width: 100%;
@@ -22,11 +23,14 @@
 }
 
 .inputText {
-  border: 0;
-  background-color: #f9fafb;
+  border: 1px solid #ccc;
+  height: 30px;
+  border-radius: 8px;
+  background-color: white;
   outline: none;
   color: inherit;
   font-size: 16px;
+  flex: 1;
 }
 
 .button {
@@ -58,15 +62,27 @@
   
 }
 
+.cancel {
+  background-color: #ccc;
+
+}
+
+.userData {
+  height: 250px;
+}
+
 .userData-title {
   font-size: 20px;
   font-weight: 600;
   font-family: Poppins, sans-serif;
   padding-bottom: 20px;
+  display: flex;
+  flex-direction: row;
 }
 
 .userData-data__row {
   display: flex; 
+  height: 30px;
 }
 
 .user-label {
@@ -79,13 +95,43 @@
   font-size: 20px;
   font-weight: 600;
   font-family: Poppins, sans-serif;
-  padding-bottom: 20px;
+  padding-bottom: 30px;
+  display: flex;
+  flex-direction: row;
+}
+
+.addUser-value{
+  width: 95%,
+}
+
+.userData-value {
+  width: 95%;
+  text-align: center;
+}
+
+.addUser-close{
+  cursor: pointer;
+  width: 5%,
 }
 
 .fields-container {
   text-align: left;
-  height: 30px;
+  height: 200px;
+
 }
+
+form {
+  height: 100%
+}
+
+
+.field {
+  text-align: left;
+  height: 45px;
+  display: flex;
+  align-items: center;
+}
+
 
 .label {
   font-weight: 600;
@@ -95,4 +141,13 @@
 
 .buttons {
   display: flex;
+  align-items: flex-end;
+}
+
+.deteleUser {
+  font-size: 15px;
+  color: #ccc;
+  text-align: center;
+  cursor: pointer;
+  margin-top: 10px;
 }

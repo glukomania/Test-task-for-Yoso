@@ -1,0 +1,12 @@
+{
+  "expo": {
+    "extra": {
+      "eas": {
+        "projectId": "898e7d7e-81af-4a0a-860d-779fb4e79776"
+      }
+    },
+    "ios": {
+      "bundleIdentifier": "com.glukomania.testyoso"
+    }
+  }
+}

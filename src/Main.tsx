@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import UserDetailsModal from './UserDetailsModal';
 import AddUserModal from './AddUserModal';
-import {getAllUsers} from './utils/localStorageService'
+import {getAllUsers, addUser, updateUser, deleteUser} from './utils/localStorageService'
 
 
 const Main = () => {
@@ -17,11 +17,34 @@ const Main = () => {
   
 
   const handleCloseUserForm = () => {
+    setSelectedUser(null)
     setIsUserModalOpen(false)
+
   }
 
   const handleCloseAddUserModal = () => {
     setIsAddUserModalOpen(false)
+  }
+
+  const handleEdit = () => {
+    setIsUserModalOpen(false)
+    setIsAddUserModalOpen(true)
+  }
+
+  const handleSubmit = (newUser) => {
+    data[newUser.id] ? updateUser(newUser) : addUser(newUser)
+    
+    const updatedData = getAllUsers()
+    setData(updatedData)
+    
+    handleCloseAddUserModal()
+  }
+
+  const handleDelete = () => {
+    deleteUser(selectedUser.id)
+    const updatedData = getAllUsers()
+    setData(updatedData)
+    handleCloseUserForm()
   }
 
   useEffect(() => {
@@ -39,15 +62,13 @@ const Main = () => {
               <FontAwesomeIcon icon={faPlus} style={{ height: "20px" }}/>
           </div>
         </div>
-        <div>
-            {<Table setSelectedUser={setSelectedUser} getAllUsers={getAllUsers} data={data} setData={setData} />}
-        </div>
+        <Table setSelectedUser={setSelectedUser} getAllUsers={getAllUsers} data={data} setData={setData} />
       </div>
       <div>
-        {isUserModalOpen && <UserDetailsModal handleClose={handleCloseUserForm} selectedUser={selectedUser}/>}
+        {isUserModalOpen && <UserDetailsModal handleEdit={handleEdit} handleClose={handleCloseUserForm} selectedUser={selectedUser}  handleDelete={handleDelete}/>}
       </div>
       <div>
-        {isAddUserModalOpen && <AddUserModal handleClose={handleCloseAddUserModal} getAllUsers={getAllUsers} setData={setData} />}
+        {isAddUserModalOpen && <AddUserModal user={selectedUser} handleClose={handleCloseAddUserModal} handleSubmit={handleSubmit} />}
       </div>
     </div>
   )

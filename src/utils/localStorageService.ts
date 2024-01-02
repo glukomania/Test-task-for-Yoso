@@ -21,14 +21,16 @@
 
   export const saveUser =(user: User):void => {
     const tableData = getTableData();
+    console.log('tableData', tableData)
     tableData[user.id] = user;
     saveTableData(tableData);
   }
 
-  export const updateUser = (id: number, updatedData: User):void => {
+  export const updateUser = (updatedData: User):void => {
+    console.log('updatedData', updatedData)
     const tableData = getTableData();
-    if (tableData[id]) {
-      tableData[id] = { ...tableData[id], ...updatedData };
+    if (tableData[updatedData.id]) {
+      tableData[updatedData.id] = { ...tableData[updatedData.id], ...updatedData };
       saveTableData(tableData);
     }
   }
@@ -50,7 +52,7 @@
     console.log('user', user)
     const tableData = getTableData();
     // here I try to get max value of current id to make an id for a new user
-
+    console.log('tableData', tableData)
     const maxId = Object.keys(tableData).reduce((max, userId) => {
       const numericId = parseInt(userId, 10);
       return numericId > max ? numericId : max;
